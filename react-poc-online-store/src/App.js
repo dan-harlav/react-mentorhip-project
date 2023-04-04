@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
-const products = [
+const productsData = [
     {
       id: 1,
       name: 'name-1'
@@ -38,7 +38,7 @@ const products = [
         <div className="products-list">
             {products && products.map((product) => {
                 const {id, name} = product;
-                return <div id={id} className="product">
+                return <div key={id} className="product">
                     {name}
                 </div> 
             })}
@@ -48,7 +48,20 @@ const products = [
 
 
   const App = () => {
-    const [filteredProducts, setFilteredProducts] = useState(products)
+    const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState(products);
+
+    useEffect(() => {
+      const timeout = setTimeout(function () {
+          setProducts(productsData);
+          setFilteredProducts(productsData);
+      }, 5000)
+      
+      return function ()  {
+          clearTimeout(timeout)
+      }
+    }, []);
+
     const onChangeHandler = (event) =>{
         const searchTerm = event.target.value;
         setFilteredProducts(products.filter((product) => product.name.includes(searchTerm)))
