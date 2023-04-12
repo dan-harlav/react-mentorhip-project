@@ -10,46 +10,6 @@ body {
   text-align: center;
 }
 
-.app-title {
-  margin-top: 75px;
-  margin-bottom: 50px;
-  font-size: 76px;
-  color: black;
-  font-family: 'Bigelow Rules';
-}
-
-.search-input {
-  border: 2px solid grey;
-  outline: none;
+.app-container {
   padding: 10px;
-  width: 150px;
-  line-height: 30px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: medium;
-}
-
-.product {
-  display: flex;
-  flex-direction: column;
-  background-color: #95dada;
-  border: 1px solid grey;
-  border-radius: 5px;
-  padding: 25px;
-  cursor: pointer;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  transition: transform 0.25s ease-out;
-}
-
-.product:hover {
-  transform: scale(1.05);
-}
-
-.products-list {
-  width: 85vw;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
 }

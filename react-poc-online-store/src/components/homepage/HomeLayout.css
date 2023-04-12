@@ -1,0 +1,14 @@
+.website-title {
+    margin-top: 75px;
+    margin-bottom: 50px;
+    font-size: 76px;
+    color: white;
+    font-family: 'Bigelow Rules';
+  }
+
+.home-layout-container {
+    padding: 10px;
+    background-position: center center;
+    background-image: url('../../assets/browsing-clothing.jpg');
+    height: 650px;
+}
