@@ -1,20 +1,18 @@
-import { useState } from "react";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
-import Products from "../products/Products";
+import Categories from "../categories/Categories";
 import HomeLayout from "./HomeLayout";
 import './Homepage.css';
+import { Outlet } from "react-router-dom";
 
-const Homepage = () => {
-    const [searchInput, setSearchInput] = useState('');
+const Homepage = ({products}) => {
 
     return (
-        <div className="homepage-container">
-            <Header onSearchInput={setSearchInput} />
-            <HomeLayout />
-            <Products  searchTerm={searchInput}/>
-            <Footer />
-        </div> 
+        <>
+            <Outlet />
+            <div className="homepage-container">
+                <HomeLayout />
+                <Categories products={products} />
+            </div>
+        </>
     );
   }
 
