@@ -1,9 +1,13 @@
+import { useParams } from 'react-router-dom';
 import Product from "../product/Product";
+import './CategoryProducts.css'
 
 const CategoryProducts = ({products}) => {
     const { category } = useParams();
+
+    console.log(`category ${category}`)
     
-    filteredProducts = products.filter((product) => product.category === category)
+    const filteredProducts = products.filter((product) => product.category === category)
   
   
     return (

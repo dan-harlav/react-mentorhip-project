@@ -3,7 +3,10 @@ import './App.css';
 import Homepage from './components/homepage/Homepage';
 import { useEffect, useState } from 'react';
 import BasicLayout from './components/BasicLayout';
-import Shop from './components/products/Shop';
+// import Shop from './components/products/Shop';
+import Products from './components/products/Products';
+import CategoryProducts from './components/category/CategoryProducts';
+import ProductDetails from './components/product/ProductView';
 const URL = process.env.REACT_APP_API_URL;
 
 
@@ -29,7 +32,13 @@ const URL = process.env.REACT_APP_API_URL;
           <Routes>
             <Route path='/' element={<BasicLayout onSearchInput={setSearchInput}   />}>
               <Route index element={<Homepage products={products}/>} />
-              <Route path='products/*' element={<Shop products={products} searchTerm={searchInput}/>} />
+              <Route path='products/*'>
+                <Route index element={<Products products={products} searchTerm={searchInput}/>} />
+                <Route path=":category">
+                    <Route index element={<CategoryProducts products={products}/>} />
+                    <Route path=":productId" element={<ProductDetails products={products}/>} />
+                </Route>
+              </Route>
               <Route path='auth' element={<div />} />
               <Route path='checkout' element={<div />} />
             </Route>

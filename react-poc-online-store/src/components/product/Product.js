@@ -1,13 +1,17 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import './Product.css'
 
 const Product = ({product}) => {
     
     const {id, title, price, thumbnail} = product;
 
+    const {category} = useParams();
+
+    const location = useLocation();
+
     const navigate = useNavigate();
 
-    const onNavigateHandler = () => navigate(`/products/${id}`);
+    const onNavigateHandler = () => navigate(`${location.pathname}/${category ?? product.category.toLowerCase()}/${id}`);
 
     return ( 
         <div className="product" onClick={onNavigateHandler}>
