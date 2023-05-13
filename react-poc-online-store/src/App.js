@@ -1,17 +1,19 @@
+import { useEffect, useState, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import Homepage from './components/homepage/Homepage';
-import { useEffect, useState } from 'react';
 import BasicLayout from './components/BasicLayout';
-// import Shop from './components/products/Shop';
-import Products from './components/products/Products';
-import CategoryProducts from './components/category/CategoryProducts';
-import ProductDetails from './components/product/ProductView';
+import Shop from './components/products/Shop';
+import Cart from './components/Cart';
+import './App.css';
+
 const URL = process.env.REACT_APP_API_URL;
+export const AppContext = createContext(undefined);
 
 
   const App = () => {
-
+    const [contextValue, setContextValue] = useState({
+      cart: {}
+      });
     const [searchInput, setSearchInput] = useState('');
     const [products, setProducts] = useState([]);
 
@@ -28,22 +30,21 @@ const URL = process.env.REACT_APP_API_URL;
     }, []);
 
     return (
+      <AppContext.Provider value={{
+        contextValue,
+        setContextValue
+      }}>
         <div className="app-container">
           <Routes>
             <Route path='/' element={<BasicLayout onSearchInput={setSearchInput}   />}>
               <Route index element={<Homepage products={products}/>} />
-              <Route path='products/*'>
-                <Route index element={<Products products={products} searchTerm={searchInput}/>} />
-                <Route path=":category">
-                    <Route index element={<CategoryProducts products={products}/>} />
-                    <Route path=":productId" element={<ProductDetails products={products}/>} />
-                </Route>
-              </Route>
+              <Route path='products/*' element={<Shop products={products} searchTerm={searchInput}/>} />
               <Route path='auth' element={<div />} />
-              <Route path='checkout' element={<div />} />
+              <Route path='checkout' element={<Cart />} />
             </Route>
           </Routes>
         </div>
+      </AppContext.Provider>
     );
   }
 
