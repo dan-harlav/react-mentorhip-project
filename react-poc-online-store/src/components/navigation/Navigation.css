@@ -59,3 +59,10 @@
     width: 24px;
     height: 24px;
 }
+
+.checkout-icon-container span {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    bottom: 12px;
+}

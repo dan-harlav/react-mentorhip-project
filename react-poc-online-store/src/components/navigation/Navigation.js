@@ -5,11 +5,16 @@ import { ReactComponent as CheckoutSvg } from '../../assets/shopping-bag.svg'
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
 import { Link } from "react-router-dom";
 import { AppContext } from "../../App";
+import CartDropdown from "../cart/CartDropdown";
 
 const Navigation = ({ onSearchInput }) => {
-    const { contextValue: { cart } } = useContext(AppContext);
+    const { contextValue, setContextValue} = useContext(AppContext);
+
+    const { cartItems, isCartOpen } = contextValue;
     
-    const totalCart = Object.values(cart).reduce((a, b) => a + b, 0);
+    const totalCart = Object.values(cartItems).reduce((acc, item) => acc + item.quantity, 0);
+
+    const toggleIsCartOpen = () => setContextValue({...contextValue, isCartOpen: !isCartOpen});
     
     const onChangeHandler = (event) => {
         onSearchInput(event.target.value);
@@ -29,12 +34,11 @@ const Navigation = ({ onSearchInput }) => {
                     <Link to='/auth'>
                         SIGN IN
                     </Link>
-                    <Link to='/checkout'>
-                        <div className="checkout-icon-container" >
-                            <CheckoutSvg className="checkout-icon" />
-                            <span style={{ padding: '5px' }}>{totalCart}</span>
-                        </div>
-                    </Link>
+                    <div className="checkout-icon-container" onClick= {toggleIsCartOpen}>
+                        <CheckoutSvg className="checkout-icon" />
+                        <span>{totalCart}</span>
+                    </div>
+                    {isCartOpen && <CartDropdown />}
                 </div>
             </div>
             {/* <Outlet /> */}

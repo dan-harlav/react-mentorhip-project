@@ -3,18 +3,26 @@ import { useParams } from 'react-router-dom';
 import { AppContext } from "../../App";
 import './ProductView.css';
 
-const ProductDetails = ({products}) => {
+const ProductDetails = ({ products }) => {
     const { contextValue, setContextValue } = useContext(AppContext);
     const { productId } = useParams();
 
     const productDetails = products.find((product) => product.id.toString() === productId.toString())
     const addToCart = () => {
-        const { cart } = contextValue;
-        const newCart = { ...cart, [productId]: cart[productId] ? cart[productId] + 1 : 1 }
-        setContextValue({...contextValue, cart: newCart });
-    }
+        const { cartItems } = contextValue;
+        const existingCartItem = cartItems.find((cartItem) => cartItem.id === productId);
 
-    console.log({contextValue})
+        const newCartItems = (existingCartItem) ? cartItems.map((cartItem) => cartItem.id === productId ? {...cartItem, quantity: cartItem.quantity + 1} : cartItem) :
+        [...cartItems, {
+            id: productDetails.id,
+            title: productDetails.title,
+            price: productDetails.price,
+            thumbnail: productDetails.thumbnail,
+            quantity: 1
+        }];
+
+        setContextValue({ ...contextValue, cartItems: newCartItems});
+    }
 
     return (
         <> {productDetails && (
@@ -30,6 +38,6 @@ const ProductDetails = ({products}) => {
         )}
         </>
     );
-  }
+}
 
-  export default ProductDetails;
+export default ProductDetails;

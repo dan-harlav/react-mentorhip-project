@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './Product.css'
 
 const Product = ({product}) => {
@@ -7,11 +7,11 @@ const Product = ({product}) => {
 
     const {category} = useParams();
 
-    const location = useLocation();
+    console.log(category)
 
     const navigate = useNavigate();
 
-    const onNavigateHandler = () => navigate(`${location.pathname}/${category ?? product.category.toLowerCase()}/${id}`);
+    const onNavigateHandler = () => navigate(!category ?  `${product.category.toLowerCase()}/${id}` : `${id}`);
 
     return ( 
         <div className="product" onClick={onNavigateHandler}>

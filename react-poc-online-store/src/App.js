@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Homepage from './components/homepage/Homepage';
 import BasicLayout from './components/BasicLayout';
 import Shop from './components/products/Shop';
-import Cart from './components/Cart';
+import Cart from './components/cart/Cart';
 import './App.css';
 
 const URL = process.env.REACT_APP_API_URL;
@@ -12,7 +12,8 @@ export const AppContext = createContext(undefined);
 
   const App = () => {
     const [contextValue, setContextValue] = useState({
-      cart: {}
+      cartItems: [],
+      isCartOpen: false
       });
     const [searchInput, setSearchInput] = useState('');
     const [products, setProducts] = useState([]);
