@@ -14,7 +14,7 @@ const cartTotal = Object.values(cartItems).reduce((acc, item) => acc + item.quan
           <span>Product</span>
         </div>
         <div className='header-block'>
-        <span>Description</span>
+            <span>Description</span>
         </div>
         <div className='header-block'>
           <span>Quantity</span>
@@ -30,8 +30,7 @@ const cartTotal = Object.values(cartItems).reduce((acc, item) => acc + item.quan
                 <img src={cartItem.thumbnail} alt ={`${cartItem.name}`} />
               </div>
               <span className='name'>{cartItem.title}</span>
-              <span className='quantity'></span>
-              <span className='value'>{cartItem.quantity}</span>
+              <span className='quantity'>{cartItem.quantity}</span>
               <span className='price'>{cartItem.price}</span>
             </div>
               ))

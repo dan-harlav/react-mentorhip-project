@@ -10,9 +10,9 @@ const ProductDetails = ({ products }) => {
     const productDetails = products.find((product) => product.id.toString() === productId.toString())
     const addToCart = () => {
         const { cartItems } = contextValue;
-        const existingCartItem = cartItems.find((cartItem) => cartItem.id === productId);
+        const existingCartItem = cartItems.find((cartItem) => Number(cartItem.id) === Number(productId));
 
-        const newCartItems = (existingCartItem) ? cartItems.map((cartItem) => cartItem.id === productId ? {...cartItem, quantity: cartItem.quantity + 1} : cartItem) :
+        const newCartItems = (existingCartItem) ? cartItems.map((cartItem) => Number(cartItem.id) === Number(productId) ? {...cartItem, quantity: cartItem.quantity + 1} : cartItem) :
         [...cartItems, {
             id: productDetails.id,
             title: productDetails.title,
@@ -20,6 +20,8 @@ const ProductDetails = ({ products }) => {
             thumbnail: productDetails.thumbnail,
             quantity: 1
         }];
+
+        console.log(newCartItems)
 
         setContextValue({ ...contextValue, cartItems: newCartItems});
     }

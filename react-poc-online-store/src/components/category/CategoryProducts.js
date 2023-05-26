@@ -4,8 +4,6 @@ import './CategoryProducts.css'
 
 const CategoryProducts = ({products}) => {
     const { category } = useParams();
-
-    console.log(`category ${category}`)
     
     const filteredProducts = products.filter((product) => product.category === category)
   
