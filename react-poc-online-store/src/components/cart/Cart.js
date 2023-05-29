@@ -1,11 +1,9 @@
-import { useContext } from "react";
-import { AppContext } from "../../App";
-
+import { useCart } from '../../context'
 const Cart = () => {
 
-const { contextValue: { cartItems } } = useContext(AppContext);
+  const { cartProducts } = useCart();
 
-const cartTotal = Object.values(cartItems).reduce((acc, item) => acc + item.quantity * item.price, 0);
+const cartTotal = Object.values(cartProducts).reduce((acc, item) => acc + item.quantity * item.price, 0);
 
   return (
     <div className='checkout-container'>
@@ -24,8 +22,8 @@ const cartTotal = Object.values(cartItems).reduce((acc, item) => acc + item.quan
         </div>
       </div>
         {
-          cartItems.map((cartItem) => (
-            <div className='checkout-item-container'>
+          cartProducts.map((cartItem, i) => (
+            <div className='checkout-item-container' key={i}>
               <div className='image-container'>
                 <img src={cartItem.thumbnail} alt ={`${cartItem.name}`} />
               </div>

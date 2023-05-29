@@ -1,20 +1,20 @@
-import { useContext } from "react";
 import SearchInput from "./SearchInput";
 import './Navigation.css';
 import { ReactComponent as CheckoutSvg } from '../../assets/shopping-bag.svg'
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
 import { Link } from "react-router-dom";
-import { AppContext } from "../../App";
 import CartDropdown from "../cart/CartDropdown";
 
+import { useCart } from "../../context";
+
 const Navigation = ({ onSearchInput }) => {
-    const { contextValue, setContextValue} = useContext(AppContext);
-
-    const { cartItems, isCartOpen } = contextValue;
+    const { openCart, closeCart, isOpen, cartProducts } = useCart();
     
-    const totalCart = Object.values(cartItems).reduce((acc, item) => acc + item.quantity, 0);
+    const totalCart = Object.values(cartProducts).reduce((acc, item) => acc + item.quantity, 0);
 
-    const toggleIsCartOpen = () => setContextValue({...contextValue, isCartOpen: !isCartOpen});
+    const toggleIsCartOpen = () => {
+        isOpen ? closeCart() : openCart()
+    };
     
     const onChangeHandler = (event) => {
         onSearchInput(event.target.value);
@@ -38,7 +38,7 @@ const Navigation = ({ onSearchInput }) => {
                         <CheckoutSvg className="checkout-icon" />
                         <span>{totalCart}</span>
                     </div>
-                    {isCartOpen && <CartDropdown />}
+                    {isOpen && <CartDropdown />}
                 </div>
             </div>
             {/* <Outlet /> */}

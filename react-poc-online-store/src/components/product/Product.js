@@ -7,8 +7,6 @@ const Product = ({product}) => {
 
     const {category} = useParams();
 
-    console.log(category)
-
     const navigate = useNavigate();
 
     const onNavigateHandler = () => navigate(!category ?  `${product.category.toLowerCase()}/${id}` : `${id}`);

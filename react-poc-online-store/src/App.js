@@ -5,16 +5,12 @@ import BasicLayout from './components/BasicLayout';
 import Shop from './components/products/Shop';
 import Cart from './components/cart/Cart';
 import './App.css';
+import { CartProvider } from './context';
 
 const URL = process.env.REACT_APP_API_URL;
-export const AppContext = createContext(undefined);
 
 
   const App = () => {
-    const [contextValue, setContextValue] = useState({
-      cartItems: [],
-      isCartOpen: false
-      });
     const [searchInput, setSearchInput] = useState('');
     const [products, setProducts] = useState([]);
 
@@ -31,10 +27,7 @@ export const AppContext = createContext(undefined);
     }, []);
 
     return (
-      <AppContext.Provider value={{
-        contextValue,
-        setContextValue
-      }}>
+      <CartProvider>
         <div className="app-container">
           <Routes>
             <Route path='/' element={<BasicLayout onSearchInput={setSearchInput}   />}>
@@ -45,7 +38,7 @@ export const AppContext = createContext(undefined);
             </Route>
           </Routes>
         </div>
-      </AppContext.Provider>
+        </CartProvider>
     );
   }
 
