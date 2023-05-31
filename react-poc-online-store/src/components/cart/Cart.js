@@ -1,9 +1,10 @@
 import { useCart } from '../../context'
+
+import {ArrowBackIos, ArrowForwardIos }  from '@mui/icons-material';
+
 const Cart = () => {
 
-  const { cartProducts } = useCart();
-
-const cartTotal = Object.values(cartProducts).reduce((acc, item) => acc + item.quantity * item.price, 0);
+  const { cartProducts, cartTotal, addProduct, removeProduct, clearProduct } = useCart();
 
   return (
     <div className='checkout-container'>
@@ -20,6 +21,9 @@ const cartTotal = Object.values(cartProducts).reduce((acc, item) => acc + item.q
         <div className='header-block'>
           <span>Price</span>
         </div>
+        <div className='header-block'>
+          <span>Remove</span>
+        </div>
       </div>
         {
           cartProducts.map((cartItem, i) => (
@@ -28,8 +32,13 @@ const cartTotal = Object.values(cartProducts).reduce((acc, item) => acc + item.q
                 <img src={cartItem.thumbnail} alt ={`${cartItem.name}`} />
               </div>
               <span className='name'>{cartItem.title}</span>
-              <span className='quantity'>{cartItem.quantity}</span>
+              <span className='quantity'>
+                <ArrowBackIos className='arrow' onClick={() => removeProduct(cartItem)} />
+                <span className='value'>{cartItem.quantity}</span>
+                <ArrowForwardIos className='arrow' onClick={() => addProduct(cartItem)} />
+              </span>
               <span className='price'>{cartItem.price}</span>
+              <div onClick={() => clearProduct(cartItem)} className='remove-button'>&#10005;</div>
             </div>
               ))
         }

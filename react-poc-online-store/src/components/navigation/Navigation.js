@@ -8,9 +8,7 @@ import CartDropdown from "../cart/CartDropdown";
 import { useCart } from "../../context";
 
 const Navigation = ({ onSearchInput }) => {
-    const { openCart, closeCart, isOpen, cartProducts } = useCart();
-    
-    const totalCart = Object.values(cartProducts).reduce((acc, item) => acc + item.quantity, 0);
+    const { openCart, closeCart, isOpen, cartCount } = useCart();
 
     const toggleIsCartOpen = () => {
         isOpen ? closeCart() : openCart()
@@ -36,7 +34,7 @@ const Navigation = ({ onSearchInput }) => {
                     </Link>
                     <div className="checkout-icon-container" onClick= {toggleIsCartOpen}>
                         <CheckoutSvg className="checkout-icon" />
-                        <span>{totalCart}</span>
+                        <span>{cartCount}</span>
                     </div>
                     {isOpen && <CartDropdown />}
                 </div>

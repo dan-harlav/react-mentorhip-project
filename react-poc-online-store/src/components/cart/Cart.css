@@ -44,6 +44,7 @@
 
   .item-details .name {
     font-size: 16px;
+    text-align: left;
   }
 
   .checkout-item-container {
@@ -59,7 +60,7 @@
 
   .image-container {
     width: 23%;
-    padding-right: 15px;
+    padding-right: 5px;
   }
 
   img {
@@ -70,11 +71,26 @@
   .checkout-container .name,
   .checkout-container .quantity,
   .checkout-container .price {
-    width: 23%;
+    width: 24%;
   }
 
-  .checkout-item-container .price {
-    width: 8%;
+.checkout-container .quantity {
+    display: flex;
+    justify-content: center;
+  }
+
+.checkout-container .quantity .arrow {
+    cursor: pointer;
+  }
+
+.checkout-container .quantity .value {
+    margin: 0 5px 0 1px;
+  }
+
+.checkout-container .remove-button {
+    padding-left: 12px;
+    cursor: pointer;
+    width: 11%;
   }
 
   .checkout-container {
@@ -102,11 +118,12 @@
 
   .header-block {
     text-transform: capitalize;
-    width: 23%;
+    width: 20%;
+    /* text-align: initial; */
   }
 
   .header-block:last-child {
-    width: 8%;
+    width: 11%;
   }
   
   

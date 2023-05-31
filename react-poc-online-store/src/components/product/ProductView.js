@@ -1,5 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useCart } from '../../context'
+
+import { Button } from '@mui/material';
+
 import './ProductView.css';
 
 const ProductDetails = ({ products }) => {
@@ -16,7 +19,7 @@ const ProductDetails = ({ products }) => {
                     <span className='name'>{productDetails.title}</span>
                     <span className='description'>{productDetails.description}</span>
                     <span className='price'>${productDetails.price}</span>
-                    <button type="button" className='add-cart-button' onClick={() => addProduct(productDetails)}>Add  to cart</button>
+                    <Button color="inherit" variant="outlined" className='add-cart-button' onClick={() => addProduct(productDetails)}>Add  to cart</Button>
                 </div>
             </div>
         )}
