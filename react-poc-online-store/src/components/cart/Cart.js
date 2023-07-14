@@ -1,6 +1,6 @@
 import { useCart } from '../../context'
 
-import {ArrowBackIos, ArrowForwardIos }  from '@mui/icons-material';
+import {ArrowBackIos, ArrowForwardIos, Clear as ClearIcon }  from '@mui/icons-material';
 
 const Cart = () => {
 
@@ -38,7 +38,7 @@ const Cart = () => {
                 <ArrowForwardIos className='arrow' onClick={() => addProduct(cartItem)} />
               </span>
               <span className='price'>{cartItem.price}</span>
-              <div onClick={() => clearProduct(cartItem)} className='remove-button'>&#10005;</div>
+              <ClearIcon onClick={() => clearProduct(cartItem)} className='remove-button'></ClearIcon>
             </div>
               ))
         }

@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import './Product.css'
 
+
 const Product = ({product}) => {
     
     const {id, title, price, thumbnail} = product;

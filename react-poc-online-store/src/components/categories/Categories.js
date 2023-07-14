@@ -16,8 +16,8 @@ const Categories = ({products}) => {
 
     return (
         <div className='categories-preview-container'>
-          {categories.map((category) => (
-            <div className="category-preview-item" onClick={() => {navigate(`/products/${category}`)}}>
+          {categories.map((category, i) => (
+            <div className="category-preview-item" onClick={() => {navigate(`/products/${category}`)}} key={i} >
                 <div>
                     <h2>{category.toUpperCase()}</h2>
                     <p>Shop Now</p>
